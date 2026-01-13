@@ -1,0 +1,57 @@
+[Grupos académicos]
+  g_1eso, g_2eso, g_3eso, g_4eso
+  g_1bach, g_2bach
+  g_1daw
+
+[Grupos por etapa]
+  g_eso    -> 1ESO, 2ESO, 3ESO, 4ESO
+  g_bach   -> 1BACH, 2BACH
+
+[Grupos por rol]
+  g_alumnado
+  g_profesorado
+  g_admins  -> 1DAW, administrador
+
+[Usuarios]
+  1ESO  -> g_1eso + g_eso + g_alumnado
+  2ESO  -> g_2eso + g_eso + g_alumnado
+  3ESO  -> g_3eso + g_eso + g_alumnado
+  4ESO  -> g_4eso + g_eso + g_alumnado
+
+  1BACH -> g_1bach + g_bach + g_alumnado
+  2BACH -> g_2bach + g_bach + g_alumnado
+
+  1DAW  -> g_1daw + g_admins
+  alumnado -> g_alumnado
+  profesorado -> g_profesorado
+  administrador -> g_admins
+
+[Directorios]
+  /srv/aula/cursos/1ESO
+    - grupo: g_1eso
+    - ACL: g_eso:rx
+    - ACL: g_profesorado:rwx
+
+  /srv/aula/cursos/2ESO
+    - grupo: g_2eso
+    - ACL: g_eso:rx
+    - ACL: g_profesorado:rwx
+
+  (… igual para 3ESO y 4ESO)
+
+  /srv/aula/cursos/1BACH
+    - grupo: g_1bach
+    - ACL: g_bach:rx
+    - ACL: g_profesorado:rwx
+
+  /srv/aula/cursos/2BACH
+    - grupo: g_2bach
+    - ACL: g_bach:rx
+    - ACL: g_profesorado:rwx
+
+  /srv/aula/cursos/1DAW
+    - grupo: g_1daw
+    - ACL: g_profesorado:rwx
+
+[Administración del sistema]
+  g_admins -> sudo
